@@ -13,6 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { homeOutline, bugOutline, heartOutline, helpOutline } from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -22,12 +23,19 @@ import { homeOutline, bugOutline, heartOutline, helpOutline } from 'ionicons/ico
   imports: [IonContent, IonHeader, IonIcon, IonTab, IonFooter, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar],
 
 })
-export class MenuComponent  implements OnInit {
+export class MenuComponent implements OnInit {
 
-  constructor() { 
+  constructor(
+    private router: Router
+  ) {
     addIcons({ homeOutline, bugOutline, heartOutline, helpOutline });
- }
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  navigate(url: any) {
+    this.router.navigateByUrl(url);
+
+  }
 
 }
