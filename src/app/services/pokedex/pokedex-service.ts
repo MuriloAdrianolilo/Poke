@@ -25,4 +25,8 @@ export class PokedexService {
   loadData(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(this.POKEDEX_JSON_PATH);
   }
+
+  formatarNumero(num: number): string {
+    return String(num).padStart(3, '0');
+  }
 }

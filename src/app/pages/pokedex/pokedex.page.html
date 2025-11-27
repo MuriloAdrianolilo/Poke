@@ -2,35 +2,33 @@
   <ion-toolbar>
     <ion-title>Pokédex</ion-title>
   </ion-toolbar>
+  <ion-item>
+    <ion-select label="Geração" placeholder="Escolha uma opção" (ionChange)="filtrarGen($event)">
+      <ion-select-option value="0">Todas as Gerações</ion-select-option>
+      <ion-select-option value="1">Gen I</ion-select-option>
+      <ion-select-option value="2">Gen II</ion-select-option>
+      <ion-select-option value="3">Gen III</ion-select-option>
+      <ion-select-option value="4">Gen IV</ion-select-option>
+      <ion-select-option value="5">Gen V</ion-select-option>
+      <ion-select-option value="6">Gen VI</ion-select-option>
+      <ion-select-option value="7">Gen VII</ion-select-option>
+      <ion-select-option value="8">Gen VIII</ion-select-option>
+      <ion-select-option value="9">Gen IX</ion-select-option>
+    </ion-select>
+  </ion-item>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <h1>Lista de Pokémons</h1>
   <ion-list>
-  <ion-item>
-    <ion-avatar aria-hidden="true" slot="start">
-      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
-    <ion-label>Huey</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-avatar aria-hidden="true" slot="start">
-      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
-    <ion-label>Dewey</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-avatar aria-hidden="true" slot="start">
-      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
-    <ion-label>Louie</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-avatar aria-hidden="true" slot="start">
-      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
-    <ion-label>Fooie</ion-label>
-  </ion-item>
-</ion-list>
+    <ion-item *ngFor="let pokemon of pokedex; let i = index">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt=""
+          src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/{{formatarNumero(pokemon.id)}}.png" />
+      </ion-avatar>
+      <ion-label>{{pokemon.name}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 <app-menu></app-menu>
