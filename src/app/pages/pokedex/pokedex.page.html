@@ -3,7 +3,7 @@
     <ion-title>Pokédex</ion-title>
   </ion-toolbar>
   <ion-item>
-    <ion-select label="Geração" placeholder="Escolha uma opção" (ionChange)="filtrarGen($event)">
+    <ion-select aria-label="Geração" placeholder="Escolha uma geração" (ionChange)="filtrarGen($event)">
       <ion-select-option value="0">Todas as Gerações</ion-select-option>
       <ion-select-option value="1">Gen I</ion-select-option>
       <ion-select-option value="2">Gen II</ion-select-option>
@@ -14,6 +14,18 @@
       <ion-select-option value="7">Gen VII</ion-select-option>
       <ion-select-option value="8">Gen VIII</ion-select-option>
       <ion-select-option value="9">Gen IX</ion-select-option>
+    </ion-select>
+    <ion-select aria-label="Tipo" placeholder="Escolha um tipo" (ionChange)="filtrarType($event)">
+      <ion-select-option value="0">Todos os Tipos</ion-select-option>
+      <ion-select-option *ngFor="let tipo of typeLabels" [value]="tipo">
+        {{ tipo | titlecase }}
+      </ion-select-option>
+    </ion-select>
+    <ion-select aria-label="Sub-Tipo" placeholder="Escolha um sub-tipo" (ionChange)="filtrarSubType($event)">
+      <ion-select-option value="0">Todos os Sub-tipos</ion-select-option>
+      <ion-select-option *ngFor="let tipo of typeLabels" [value]="tipo">
+        {{ tipo | titlecase }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -28,8 +40,12 @@
           src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/{{formatarNumero(pokemon.id)}}.png" />
       </ion-avatar>
       <ion-label>{{pokemon.name}}</ion-label>
-      <ion-note slot="end" [style.backgroundColor]="getColor(pokemon.type)" >{{pokemon.type}}</ion-note>
-      <ion-note slot="end" [style.backgroundColor]="getColor(pokemon.sub_type)" >{{pokemon.sub_type}}</ion-note>
+      <ion-text class="pokemon-type" slot="end" *ngIf="pokemon.type"
+        [style.backgroundColor]="getColor(pokemon.type)">{{pokemon.type}}</ion-text>
+      <ion-text class="pokemon-type" slot="end" *ngIf="pokemon.sub_type"
+        [style.backgroundColor]="getColor(pokemon.sub_type)">{{pokemon.sub_type}}</ion-text>
+      <ion-icon [name]="pokemon.isFavorite ? 'heart' : 'heart-outline'" (click)="toggleFavorite(pokemon)" slot="end">
+      </ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

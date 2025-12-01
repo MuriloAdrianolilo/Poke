@@ -8,6 +8,7 @@ export interface Pokemon {
   type: string;
   sub_type: string;
   gen: number;
+  isFavorite: boolean;
 }
 
 @Injectable({
