@@ -6,10 +6,19 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage';
+import { importProvidersFrom } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    importProvidersFrom(IonicModule.forRoot({})),
+    importProvidersFrom(IonicStorageModule.forRoot({
+      name: 'db',
+      driverOrder: [Drivers.IndexedDB]
+    })),
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     // 2. ADICIONAR: Inclua provideHttpClient() aqui para injetar o serviço globalmente
