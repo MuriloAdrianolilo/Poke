@@ -34,7 +34,7 @@
 <ion-content [fullscreen]="true">
   <h1>Lista de Pokémons</h1>
   <ion-list>
-    <ion-item *ngFor="let pokemon of pokedex; let i = index">
+    <ion-item *ngFor="let pokemon of pokedex; let i = index" (click)="goToPokemonDetails(pokemon.id)">
       <ion-avatar aria-hidden="true" slot="start">
         <img alt=""
           src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/{{formatarNumero(pokemon.id)}}.png" />

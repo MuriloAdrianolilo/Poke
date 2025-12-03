@@ -10,6 +10,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heartOutline, heart } from 'ionicons/icons';
 import { FavoritosService } from '../../services/favoritos/favoritos-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokedex',
@@ -65,7 +66,8 @@ export class PokedexPage implements OnInit {
 
   constructor(
     private pokedexService: PokedexService,
-    private favoritosService: FavoritosService
+    private favoritosService: FavoritosService,
+    private router: Router
 
   ) {
     addIcons({ heartOutline, heart });
@@ -92,7 +94,7 @@ export class PokedexPage implements OnInit {
       console.log('Puxou os dados json e salvou');
 
     }
-    else{
+    else {
       console.log('Puxou os dados do banco de dados salvo');
     }
 
@@ -166,14 +168,19 @@ export class PokedexPage implements OnInit {
   async toggleFavorite(pokemon: Pokemon) {
     pokemon.isFavorite = !pokemon.isFavorite;
     if (this.pokedexfull) {
-        
-        await this.save(this.pokedexfull); 
-        
-        console.log(`Estado de favorito de ${pokemon.name} alterado e Pokédex salva.`);
+
+      await this.save(this.pokedexfull);
+
+      console.log(`Estado de favorito de ${pokemon.name} alterado e Pokédex salva.`);
     } else {
-        console.error("Erro: Pokédex completa (this.pokedexfull) está nula e não pode ser salva.");
+      console.error("Erro: Pokédex completa (this.pokedexfull) está nula e não pode ser salva.");
     }
 
+  }
+
+  goToPokemonDetails(pokemonId: number) {
+
+    this.router.navigate(['/pokemon', pokemonId]);
   }
 
 }

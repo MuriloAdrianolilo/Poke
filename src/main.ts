@@ -1,7 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
-// 1. IMPORTAR: Adicione provideHttpClient aqui
 import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app/app.routes';
@@ -21,7 +20,6 @@ bootstrapApplication(AppComponent, {
     })),
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    // 2. ADICIONAR: Inclua provideHttpClient() aqui para injetar o serviço globalmente
     provideHttpClient(),
   ],
 });

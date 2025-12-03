@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>pokemon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @if(pokemon){
+  <div class="name">{{pokemon.name}}</div>
+  <div class="number">{{pokemon.order}}</div>
+  <div class="weight">{{pokemon.weight}}</div>
+  <div class="height">{{pokemon.height}}</div>
+  <div class="types" *ngFor="let atributo of pokemon.types;">
+    <div>{{atributo.type.name}}</div>
+  </div>
+  <div class="abilities" *ngFor="let atributo of pokemon.abilities;">
+    <div>{{atributo.ability.name}}</div>
+  </div>
+  <div class="stats" *ngFor="let atributo of pokemon.stats;">
+    <div>{{atributo.stat.name}}: {{atributo.base_stat}}</div>
+  </div>
+  <div>
+    <ion-button shape="round" (click)="play()">
+      <ion-icon slot="icon-only" name="play-circle-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  }
+</ion-content>
